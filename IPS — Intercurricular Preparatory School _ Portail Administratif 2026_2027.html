@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPS — Intercurricular Preparatory School | University English Preparation 2026/2027</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans (Moderne & Institutionnel) & Outfit (Titres Académiques) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ips: {
+                            dark: '#1E201F',
+                            charcoal: '#2A2C2B',
+                            surface: '#343736',
+                            yellow: '#D9E021',
+                            yellowHover: '#E4EB34',
+                            yellowDim: '#B8BF16',
+                            light: '#F8F9FA',
+                            slate: '#646866'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #2A2C2B;
+            color: #FFFFFF;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar institutionnelle */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1E201F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4A4E4C;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D9E021;
+        }
+
+        /* Effet Glassmorphism Institutionnel */
+        .glass-ips {
+            background: rgba(34, 36, 35, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(217, 224, 33, 0.22);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45);
+        }
+
+        .glass-ips-card {
+            background: #222423;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-ips-card:hover {
+            border-color: #D9E021;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px -10px rgba(217, 224, 33, 0.18);
+        }
+
+        /* Courbe signature inspirée du prospectus IPS */
+        .ips-hero-curve {
+            border-bottom-left-radius: 3rem;
+            border-bottom-right-radius: 3rem;
+        }
+        @media (min-width: 1024px) {
+            .ips-hero-curve {
+                border-bottom-left-radius: 5rem;
+                border-bottom-right-radius: 5rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-ips-yellow selection:text-ips-charcoal">
+
+    <!-- Notification Toast (Copie Téléphone / Référence Dossier) -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-ips-dark border border-ips-yellow px-5 py-3.5 rounded-xl flex items-center gap-3 shadow-2xl">
+            <div class="w-8 h-8 rounded-lg bg-ips-yellow text-ips-charcoal flex items-center justify-center font-bold">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <p id="toast-title" class="font-display font-bold text-white tracking-wide text-sm">Action confirmée</p>
+                <p id="toast-desc" class="text-xs text-gray-300">Information copiée dans le presse-papier.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. BARRE DE NAVIGATION ADMINISTRATIVE      -->
+    <!-- ========================================== -->
+    <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3">
+            <nav class="glass-ips rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
+                
+                <!-- Logo IPS (Fidèle à l'emblème du prospectus) -->
+                <a href="#accueil" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-ips-yellow flex flex-col items-center justify-center text-ips-charcoal shadow-md group-hover:scale-105 transition-transform relative overflow-hidden">
+                        <!-- Arc du globe inspiré du logo IPS -->
+                        <svg class="w-8 h-2.5 text-ips-charcoal/80 -mb-0.5" viewBox="0 0 60 16" fill="none">
+                            <path d="M4 14C16 3 44 3 56 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="22" cy="7" r="1.5" fill="currentColor"/>
+                            <circle cx="38" cy="7" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="font-display font-black text-lg leading-none tracking-tight">IPS</span>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-white block leading-none">IPS SCHOOL</span>
+                        <span class="text-[11px] font-semibold tracking-wider text-ips-yellow uppercase block mt-0.5">Intercurricular Preparatory School</span>
+                    </div>
+                </a>
+
+                <!-- Liens Navigation Desktop -->
+                <div class="hidden lg:flex items-center gap-7 font-medium text-sm">
+                    <a href="#accueil" class="text-white hover:text-ips-yellow transition-colors">Accueil</a>
+                    <a href="#programme" class="text-gray-300 hover:text-ips-yellow transition-colors">Le Programme</a>
+                    <a href="#filieres" class="text-gray-300 hover:text-ips-yellow transition-colors">Filières</a>
+                    <a href="#admissions" class="text-gray-300 hover:text-ips-yellow transition-colors">Administration & Admissions</a>
+                    <a href="#contact" class="text-gray-300 hover:text-ips-yellow transition-colors">Contact</a>
+                </div>
+
+                <!-- Actions Rapides : Appel & Pré-inscription -->
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <a href="tel:0561074180" class="hidden sm:flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 px-3.5 py-2 rounded-xl text-xs font-semibold text-white transition-colors">
+                        <i class="fa-solid fa-phone text-ips-yellow"></i>
+                        <span>0561 07 41 80</span>
+                    </a>
+
+                    <a href="#admissions" class="bg-ips-yellow hover:bg-ips-yellowHover text-ips-charcoal font-display font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all shadow-lg">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <span>Pré-inscription 2026/2027</span>
+                    </a>
+
+                    <!-- Bouton Menu Mobile -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl border border-white/15 text-white hover:text-ips-yellow" aria-label="Menu">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Menu Mobile Déroulant -->
+            <div id="mobile-menu" class="hidden lg:hidden glass-ips rounded-2xl mt-2 p-4 space-y-1.5 border border-ips-yellow/30">
+                <a href="#accueil" class="mobile-link block px-4 py-2.5 rounded-xl font-semibold text-white hover:bg-ips-yellow/15">Accueil</a>
+                <a href="#programme" class="mobile-link block px-4 py-2.5 rounded-xl font-semibold text-white hover:bg-ips-yellow/15">Le Programme (About)</a>
+                <a href="#filieres" class="mobile-link block px-4 py-2.5 rounded-xl font-semibold text-white hover:bg-ips-yellow/15">Filières & Spécialités</a>
+                <a href="#admissions" class="mobile-link block px-4 py-2.5 rounded-xl font-semibold text-white hover:bg-ips-yellow/15">Administration & Admissions</a>
+                <a href="#contact" class="mobile-link block px-4 py-2.5 rounded-xl font-semibold text-white hover:bg-ips-yellow/15">Contact & Localisation</a>
+                <div class="pt-2 mt-2 border-t border-white/10 flex items-center justify-between px-4 text-xs text-gray-300">
+                    <span>Secrétariat El Achour :</span>
+                    <a href="tel:0561074180" class="text-ips-yellow font-bold">0561 07 41 80</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 2. SECTION ACCUEIL (HERO BANNER IPS)       -->
+    <!-- ========================================== -->
+    <section id="accueil" class="relative bg-ips-light text-ips-charcoal pt-28 pb-16 sm:pt-32 sm:pb-24 ips-hero-curve shadow-2xl overflow-hidden">
+        
+        <!-- Bandeau supérieur jaune signature du prospectus -->
+        <div class="absolute top-0 left-0 right-0 h-3 bg-ips-yellow"></div>
+        <!-- Formes géométriques douces en arrière-plan -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-ips-yellow/25 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gray-200/70 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+                
+                <!-- Colonne Gauche : Identité & Titre Officiel -->
+                <div class="lg:col-span-7">
+                    <!-- Badge Année Académique -->
+                    <div class="inline-flex items-center gap-2.5 bg-ips-charcoal text-white px-4 py-1.5 rounded-full mb-6 shadow-md">
+                        <span class="w-2.5 h-2.5 rounded-full bg-ips-yellow animate-pulse"></span>
+                        <span class="font-display font-bold text-xs sm:text-sm tracking-wide uppercase">
+                            Inscriptions Ouvertes • Année Académique <span class="text-ips-yellow">2026 / 2027</span>
+                        </span>
+                    </div>
+
+                    <!-- Sur-titre Institutionnel -->
+                    <p class="font-display font-bold text-sm sm:text-base uppercase tracking-[0.18em] text-ips-slate mb-2">
+                        Intercurricular Preparatory School
+                    </p>
+
+                    <!-- Titre Principal du Prospectus -->
+                    <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-[64px] text-ips-charcoal leading-[1.05] tracking-tight mb-4">
+                        University English Preparation
+                        <span class="inline-block bg-ips-yellow text-ips-charcoal px-3.5 py-1 rounded-2xl mt-2 text-3xl sm:text-5xl">2026 / 2027</span>
+                    </h1>
+
+                    <!-- Description Administrative -->
+                    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
+                        Un programme passerelle linguistique et terminologique conçu sur mesure pour votre filière universitaire, dispensé par des <strong class="text-ips-charcoal font-bold">enseignants certifiés</strong> disposant d'une solide expérience dans les environnements académiques internationaux.
+                    </p>
+
+                    <!-- Boutons d'Action Principaux -->
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#admissions" class="bg-ips-charcoal hover:bg-black text-white font-display font-bold text-base px-7 py-4 rounded-2xl flex items-center gap-3 shadow-xl transition-all">
+                            <i class="fa-solid fa-folder-plus text-ips-yellow"></i>
+                            <span>Déposer un Dossier d'Inscription</span>
+                        </a>
+
+                        <a href="#filieres" class="bg-ips-yellow hover:bg-ips-yellowHover text-ips-charcoal font-display font-bold text-base px-6 py-4 rounded-2xl flex items-center gap-2.5 shadow-md transition-all">
+                            <span>Explorer les 3 Filières</span>
+                            <i class="fa-solid fa-arrow-down text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Colonne Droite : Visuel Institutionnel & Médaillons Académiques (Inspiré du Flyer) -->
+                <div class="lg:col-span-5">
+                    <div class="relative bg-ips-charcoal rounded-3xl p-6 sm:p-8 text-white shadow-2xl border-4 border-ips-yellow">
+                        <!-- Badge En-tête Carte -->
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-ips-yellow text-ips-charcoal font-display font-black flex items-center justify-center text-lg">IPS</div>
+                                <div>
+                                    <span class="font-display font-bold text-sm block leading-tight">PORTAIL ADMINISTRATIF</span>
+                                    <span class="text-xs text-gray-400">Campus El Achour - Alger</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full">
+                                Session 2026/2027
+                            </span>
+                        </div>
+
+                        <!-- Aperçu des 3 Spécialités du Flyer -->
+                        <div class="space-y-3.5 mb-6">
+                            <div class="bg-white/5 rounded-2xl p-3.5 flex items-center gap-4 border border-white/10">
+                                <div class="w-11 h-11 rounded-xl bg-ips-yellow text-ips-charcoal flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-kit-medical"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-base text-white">Medical English</h3>
+                                    <p class="text-xs text-gray-300">Sciences médicales, pharmacie & recherche clinique</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/5 rounded-2xl p-3.5 flex items-center gap-4 border border-white/10">
+                                <div class="w-11 h-11 rounded-xl bg-ips-yellow text-ips-charcoal flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-coins"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-base text-white">Business English</h3>
+                                    <p class="text-xs text-gray-300">Économie, finance, management & commerce international</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/5 rounded-2xl p-3.5 flex items-center gap-4 border border-white/10">
+                                <div class="w-11 h-11 rounded-xl bg-ips-yellow text-ips-charcoal flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-gears"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-base text-white">Engineering English</h3>
+                                    <p class="text-xs text-gray-300">Sciences techniques, polytechnique & ingénierie</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Barre de Contact Direct du Flyer -->
+                        <div class="bg-ips-yellow text-ips-charcoal rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm font-bold">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-phone-volume"></i>
+                                <button onclick="copyText('0561 07 41 80', 'Numéro copié')" class="hover:underline cursor-pointer">0561 07 41 80</button>
+                                <span>/</span>
+                                <button onclick="copyText('0554 75 99 07', 'Numéro copié')" class="hover:underline cursor-pointer">0554 75 99 07</button>
+                            </div>
+                            <span class="text-xs uppercase tracking-wider bg-ips-charcoal text-ips-yellow px-2.5 py-1 rounded-lg">
+                                El Achour - Alger
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barre d'Informations Clés Administratives -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
+                <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-2.5 text-ips-slate text-xs font-bold uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-location-dot text-ips-charcoal"></i>
+                        <span>Localisation</span>
+                    </div>
+                    <p class="font-display font-extrabold text-base sm:text-lg text-ips-charcoal">El Achour - Alger</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-2.5 text-ips-slate text-xs font-bold uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-calendar-check text-ips-charcoal"></i>
+                        <span>Année Universitaire</span>
+                    </div>
+                    <p class="font-display font-extrabold text-base sm:text-lg text-ips-charcoal">2026 / 2027</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-2.5 text-ips-slate text-xs font-bold uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-award text-ips-charcoal"></i>
+                        <span>Corps Enseignant</span>
+                    </div>
+                    <p class="font-display font-extrabold text-base sm:text-lg text-ips-charcoal">Certifié & International</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-2.5 text-ips-slate text-xs font-bold uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-headset text-ips-charcoal"></i>
+                        <span>Secrétariat Direct</span>
+                    </div>
+                    <p class="font-display font-extrabold text-sm sm:text-base text-ips-charcoal">0561 07 41 80</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. SECTION "ABOUT THE PROGRAM"             -->
+    <!-- ========================================== -->
+    <section id="programme" class="py-20 sm:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <!-- Colonne Gauche : Présentation Bilingue Officielle -->
+                <div class="lg:col-span-6">
+                    <span class="inline-block font-display font-bold text-xs uppercase tracking-[0.2em] text-ips-yellow mb-3">
+                        Présentation Institutionnelle • About the Program
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white leading-tight mb-6">
+                        Une passerelle académique vers l'excellence universitaire.
+                    </h2>
+
+                    <!-- Encadré Citation Officielle du Prospectus (Anglais) -->
+                    <div class="bg-ips-dark border-l-4 border-ips-yellow rounded-r-2xl p-6 mb-6 shadow-lg">
+                        <p class="text-white/95 text-base sm:text-lg italic leading-relaxed font-medium">
+                            “IPS offers a linguistic and terminology bridging program tailored to your university field of study, delivered by certified teachers with extensive experience in international academic environments.”
+                        </p>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-ips-yellow mt-3">
+                            — Direction Pédagogique, Intercurricular Preparatory School
+                        </span>
+                    </div>
+
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Conçu pour accompagner les étudiants et futurs universitaires dans la transition vers l'enseignement supérieur anglophone, le programme <strong>University English Preparation 2026/2027</strong> allie maîtrise linguistique générale et acquisition rigoureuse de la terminologie propre à chaque spécialité.
+                    </p>
+                </div>
+
+                <!-- Colonne Droite : Les 3 Piliers Pédagogiques -->
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="glass-ips-card rounded-2xl p-6 flex gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-ips-yellow/15 border border-ips-yellow/40 text-ips-yellow flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-bridge"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white mb-1.5">Passerelle Linguistique & Terminologique</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Assimilation méthodique du vocabulaire scientifique, technique et académique indispensable pour suivre des cours magistraux, rédiger des travaux de recherche et soutenir des projets en anglais.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-ips-card rounded-2xl p-6 flex gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-ips-yellow/15 border border-ips-yellow/40 text-ips-yellow flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white mb-1.5">Enseignants Certifiés & Expérimentés</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Encadrement assuré exclusivement par des formateurs certifiés ayant exercé au sein d'environnements universitaires internationaux, garantissant une pédagogie interactive et exigeante.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-ips-card rounded-2xl p-6 flex gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-ips-yellow/15 border border-ips-yellow/40 text-ips-yellow flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white mb-1.5">Adaptation Ciblée à Votre Filière</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Groupes constitués par domaine d'études (Médecine, Business, Ingénierie) afin que chaque heure de formation réponde directement aux exigences de votre cursus universitaire 2026/2027.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Séparateur -->
+    <div class="max-w-6xl mx-auto h-px bg-gradient-to-r from-transparent via-ips-yellow/40 to-transparent"></div>
+
+    <!-- ========================================== -->
+    <!-- 4. SECTION FILIÈRES & SPÉCIALITÉS          -->
+    <!-- ========================================== -->
+    <section id="filieres" class="py-20 sm:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- En-tête de section -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="font-display font-bold text-xs uppercase tracking-[0.22em] text-ips-yellow block mb-2">
+                    Catalogue Académique 2026/2027
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mb-4">
+                    Nos Filières de Préparation
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base">
+                    Sélectionnez une spécialité pour consulter le programme détaillé, les modules terminologiques et déposer votre demande d'inscription.
+                </p>
+            </div>
+
+            <!-- Grille des 3 Filières Principales du Prospectus -->
+            <div class="grid md:grid-cols-3 gap-7" id="tracks-grid">
+                <!-- Généré dynamiquement par JS pour interaction modale + pré-sélection formulaire -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Séparateur -->
+    <div class="max-w-6xl mx-auto h-px bg-gradient-to-r from-transparent via-ips-yellow/40 to-transparent"></div>
+
+    <!-- ========================================== -->
+    <!-- 5. ESPACE ADMINISTRATIF & ADMISSIONS       -->
+    <!-- ========================================== -->
+    <section id="admissions" class="py-20 sm:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Colonne Gauche : Procédure & Pièces à fournir (5 colonnes) -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="font-display font-bold text-xs uppercase tracking-[0.22em] text-ips-yellow block mb-2">
+                            Scolarité & Admissions
+                        </span>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-4">
+                            Procédure d'Inscription 2026/2027
+                        </h2>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            L'admission au sein de l'Intercurricular Preparatory School s'effectue en quatre étapes administratives simples afin d'assurer un placement optimal dans votre groupe de niveau.
+                        </p>
+                    </div>
+
+                    <!-- Étapes Administratives -->
+                    <div class="space-y-4">
+                        <div class="glass-ips-card rounded-2xl p-4 flex gap-4 items-center">
+                            <div class="w-9 h-9 rounded-xl bg-ips-yellow text-ips-charcoal font-display font-black flex items-center justify-center shrink-0">1</div>
+                            <div>
+                                <h4 class="font-display font-bold text-white text-base">Pré-inscription en ligne ou sur place</h4>
+                                <p class="text-xs text-gray-300">Remplissez le formulaire ci-contre ou présentez-vous au secrétariat d'El Achour.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-ips-card rounded-2xl p-4 flex gap-4 items-center">
+                            <div class="w-9 h-9 rounded-xl bg-ips-yellow text-ips-charcoal font-display font-black flex items-center justify-center shrink-0">2</div>
+                            <div>
+                                <h4 class="font-display font-bold text-white text-base">Test de Positionnement Linguistique</h4>
+                                <p class="text-xs text-gray-300">Évaluation diagnostique pour constituer des groupes homogènes selon votre niveau CECRL.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-ips-card rounded-2xl p-4 flex gap-4 items-center">
+                            <div class="w-9 h-9 rounded-xl bg-ips-yellow text-ips-charcoal font-display font-black flex items-center justify-center shrink-0">3</div>
+                            <div>
+                                <h4 class="font-display font-bold text-white text-base">Dépôt du Dossier Administratif</h4>
+                                <p class="text-xs text-gray-300">Validation définitive auprès de l'administration IPS et remise de l'emploi du temps.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist Pièces à Fournir -->
+                    <div class="bg-ips-dark rounded-2xl p-6 border border-ips-yellow/30">
+                        <h3 class="font-display font-bold text-lg text-ips-yellow mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <span>Pièces constitutives du dossier</span>
+                        </h3>
+                        <ul class="space-y-2.5 text-sm text-gray-200">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-ips-yellow text-xs"></i>
+                                <span>Copie de la pièce d'identité nationale ou passeport</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-ips-yellow text-xs"></i>
+                                <span>Attestation de réussite au Baccalauréat ou certificat de scolarité universitaire</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-ips-yellow text-xs"></i>
+                                <span>Deux (02) photos d'identité récentes</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-ips-yellow text-xs"></i>
+                                <span>Fiche de renseignements IPS dûment complétée</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Colonne Droite : Formulaire Officiel de Pré-inscription (7 colonnes) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white text-ips-charcoal rounded-3xl p-6 sm:p-10 shadow-2xl border-t-8 border-ips-yellow">
+                        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 pb-5 mb-6">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-ips-slate block">Formulaire Officiel</span>
+                                <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-ips-charcoal">
+                                    Demande de Pré-inscription
+                                </h3>
+                            </div>
+                            <span class="bg-ips-charcoal text-ips-yellow font-display font-bold text-xs px-3.5 py-1.5 rounded-xl">
+                                Session 2026 / 2027
+                            </span>
+                        </div>
+
+                        <!-- Formulaire -->
+                        <form id="preregistration-form" onsubmit="handleRegistration(event)" class="space-y-5">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="student-lastname" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Nom *</label>
+                                    <input type="text" id="student-lastname" required placeholder="Ex: Benali" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm font-medium">
+                                </div>
+                                <div>
+                                    <label for="student-firstname" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Prénom *</label>
+                                    <input type="text" id="student-firstname" required placeholder="Ex: Yasmine" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm font-medium">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="student-phone" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Téléphone *</label>
+                                    <input type="tel" id="student-phone" required placeholder="Ex: 05XX XX XX XX" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm font-medium">
+                                </div>
+                                <div>
+                                    <label for="student-email" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Adresse Email</label>
+                                    <input type="email" id="student-email" placeholder="etudiant@exemple.dz" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm font-medium">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="student-track" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Filière Souhaitée *</label>
+                                    <select id="student-track" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm font-bold text-ips-charcoal">
+                                        <option value="Medical English">Medical English (Sciences Médicales)</option>
+                                        <option value="Business English">Business English (Économie & Gestion)</option>
+                                        <option value="Engineering English">Engineering English (Sciences & Ingénierie)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="student-level" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Statut Universitaire *</label>
+                                    <select id="student-level" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm font-medium">
+                                        <option value="Nouveau Bachelier 2026">Nouveau Bachelier (Rentrée 2026/2027)</option>
+                                        <option value="Étudiant Licence (L1 - L3)">Étudiant en Licence (L1 / L2 / L3)</option>
+                                        <option value="Étudiant Master / Doctorat">Étudiant en Master / Doctorat</option>
+                                        <option value="Cursus Médical / Polytechnique">Cursus Médical / École Supérieure</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="student-notes" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">Observations / Disponibilités souhaitées</label>
+                                <textarea id="student-notes" rows="2" placeholder="Précisez votre spécialité exacte ou vos créneaux préférés..." class="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-300 focus:border-ips-charcoal focus:ring-2 focus:ring-ips-yellow outline-none text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-ips-charcoal hover:bg-black text-white font-display font-bold text-base py-4 rounded-2xl flex items-center justify-center gap-3 shadow-lg transition-all cursor-pointer">
+                                <i class="fa-solid fa-paper-plane text-ips-yellow"></i>
+                                <span>Enregistrer ma Pré-inscription</span>
+                            </button>
+                        </form>
+
+                        <!-- Récépissé Généré Dynamiquement après soumission -->
+                        <div id="registration-receipt" class="hidden mt-6 bg-ips-light border-2 border-ips-charcoal rounded-2xl p-6">
+                            <div class="flex items-center justify-between border-b border-gray-300 pb-3 mb-4">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-8 h-8 rounded-lg bg-ips-yellow text-ips-charcoal font-display font-black flex items-center justify-center text-sm">IPS</span>
+                                    <div>
+                                        <h4 class="font-display font-bold text-base text-ips-charcoal">RÉCÉPISSÉ DE PRÉ-INSCRIPTION</h4>
+                                        <p class="text-xs text-gray-600">Année Universitaire 2026/2027 • El Achour - Alger</p>
+                                    </div>
+                                </div>
+                                <span id="receipt-ref" class="bg-ips-charcoal text-ips-yellow font-mono font-bold text-xs px-3 py-1.5 rounded-lg">IPS-2026-0000</span>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm mb-4" id="receipt-details">
+                                <!-- Injecté via JS -->
+                            </div>
+
+                            <div class="bg-ips-yellow/30 border border-ips-yellow rounded-xl p-3 text-xs text-ips-charcoal font-medium mb-4">
+                                <i class="fa-solid fa-circle-info mr-1"></i>
+                                Conservez ce numéro de dossier. Notre secrétariat vous contactera sous 24h ouvrées, ou présentez-vous directement à <strong>El Achour - Alger</strong> muni de ce récépissé.
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button onclick="copyReceiptRef()" class="bg-ips-charcoal text-white font-display font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 cursor-pointer">
+                                    <i class="fa-regular fa-copy text-ips-yellow"></i>
+                                    <span>Copier la référence</span>
+                                </button>
+                                <button onclick="resetRegistrationForm()" class="bg-gray-200 hover:bg-gray-300 text-ips-charcoal font-display font-bold text-xs px-4 py-2.5 rounded-xl cursor-pointer">
+                                    Nouvelle demande
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. CONTACT & PIED DE PAGE ADMINISTRATIF    -->
+    <!-- ========================================== -->
+    <footer id="contact" class="bg-ips-dark border-t-4 border-ips-yellow pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Bandeau de Contact Jaune Signature (Fidèle au bas du prospectus) -->
+            <div class="bg-ips-yellow text-ips-charcoal rounded-3xl p-6 sm:p-8 mb-14 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
+                <div class="text-center lg:text-left">
+                    <span class="text-xs font-extrabold uppercase tracking-widest block mb-1">Secrétariat & Renseignements</span>
+                    <h3 class="font-display font-black text-2xl sm:text-3xl">Contactez l'Administration IPS</h3>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                    <a href="tel:0561074180" class="bg-ips-charcoal text-white hover:bg-black px-5 py-3.5 rounded-2xl font-display font-bold text-base sm:text-lg flex items-center gap-3 transition-colors">
+                        <i class="fa-solid fa-phone text-ips-yellow"></i>
+                        <span>0561 07 41 80</span>
+                    </a>
+
+                    <a href="tel:0554759907" class="bg-ips-charcoal text-white hover:bg-black px-5 py-3.5 rounded-2xl font-display font-bold text-base sm:text-lg flex items-center gap-3 transition-colors">
+                        <i class="fa-solid fa-phone text-ips-yellow"></i>
+                        <span>0554 75 99 07</span>
+                    </a>
+
+                    <div class="bg-white/80 text-ips-charcoal px-5 py-3.5 rounded-2xl font-display font-extrabold text-base flex items-center gap-2.5">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>El Achour - Alger</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonnes du Pied de Page -->
+            <div class="grid md:grid-cols-3 gap-10 pb-12 border-b border-white/10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-ips-yellow text-ips-charcoal font-display font-black flex items-center justify-center text-lg">IPS</div>
+                        <div>
+                            <span class="font-display font-bold text-lg text-white block leading-none">IPS SCHOOL</span>
+                            <span class="text-xs text-ips-yellow">Intercurricular Preparatory School</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Établissement spécialisé dans la préparation linguistique et terminologique universitaire. Programme officiel 2026/2027.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white text-base mb-4">Filières 2026/2027</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-300">
+                        <li><a href="#filieres" onclick="openTrackModal('medical')" class="hover:text-ips-yellow transition-colors">• Medical English (Anglais Médical)</a></li>
+                        <li><a href="#filieres" onclick="openTrackModal('business')" class="hover:text-ips-yellow transition-colors">• Business English (Anglais des Affaires)</a></li>
+                        <li><a href="#filieres" onclick="openTrackModal('engineering')" class="hover:text-ips-yellow transition-colors">• Engineering English (Anglais de l'Ingénierie)</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white text-base mb-4">Informations Administratives</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-300">
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-location-dot text-ips-yellow"></i>
+                            <span>El Achour - Alger, Algérie</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-ips-yellow"></i>
+                            <span>0561 07 41 80 / 0554 75 99 07</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-clock text-ips-yellow"></i>
+                            <span>Accueil : Samedi – Jeudi (08h30 – 17h00)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+                <p>© 2026 IPS — Intercurricular Preparatory School. Tous droits réservés.</p>
+                <span class="bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-gray-300">
+                    Portail Officiel • Déployé sur Railway
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODALE SYLLABUS DÉTAILLÉ D'UNE FILIÈRE     -->
+    <!-- ========================================== -->
+    <div id="track-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-ips-dark border-2 border-ips-yellow rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto shadow-2xl">
+            <button onclick="closeTrackModal()" class="absolute top-5 right-5 w-9 h-9 rounded-xl bg-white/10 hover:bg-ips-yellow hover:text-ips-charcoal text-white flex items-center justify-center cursor-pointer transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="track-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPTS INTERACTIFS                        -->
+    <!-- ========================================== -->
+    <script>
+        // 1. DONNÉES DES 3 FILIÈRES DU PROSPECTUS IPS
+        const tracksData = [
+            {
+                id: "medical",
+                title: "Medical English",
+                subtitle: "Anglais Médical & Sciences de la Santé",
+                icon: "fa-kit-medical",
+                badge: "Filière Santé",
+                shortDesc: "Maîtrise de la terminologie médicale, anatomique et clinique pour les étudiants en médecine, pharmacie et médecine dentaire.",
+                fullDesc: "Conçu spécifiquement pour les étudiants des filières médicales et paramédicales, ce parcours prépare à la compréhension des ouvrages médicaux internationaux, à la communication clinique et à l'analyse de publications scientifiques.",
+                modules: [
+                    "Anatomie, physiologie et terminologie clinique fondamentale",
+                    "Lecture et synthèse d'articles de recherche biomédicale",
+                    "Communication patient-praticien et présentations de cas cliniques",
+                    "Rédaction scientifique et vocabulaire pharmaceutique"
+                ],
+                targetAudience: "Étudiants en Médecine, Pharmacie, Médecine Dentaire et Sciences Biologiques."
+            },
+            {
+                id: "business",
+                title: "Business English",
+                subtitle: "Anglais des Affaires, Finance & Management",
+                icon: "fa-coins",
+                badge: "Filière Économie & Gestion",
+                shortDesc: "Acquisition du vocabulaire économique, financier et managérial pour évoluer dans les écoles de commerce et environnements internationaux.",
+                fullDesc: "Ce module offre aux étudiants en sciences économiques, commerciales et de gestion les outils linguistiques nécessaires pour rédiger des rapports financiers, négocier et présenter des projets stratégiques en anglais.",
+                modules: [
+                    "Terminologie de la finance, comptabilité, marketing et management",
+                    "Rédaction professionnelle : rapports, études de cas et correspondance",
+                    "Prise de parole en public, pitchs et négociation internationale",
+                    "Analyse de la presse économique et financière anglophone"
+                ],
+                targetAudience: "Étudiants en Sciences Économiques, Gestion, Commerce, Finance et Management."
+            },
+            {
+                id: "engineering",
+                title: "Engineering English",
+                subtitle: "Anglais de l'Ingénierie & Sciences Techniques",
+                icon: "fa-gears",
+                badge: "Filière Sciences & Technologie",
+                shortDesc: "Vocabulaire technique, normes internationales, rédaction de cahiers des charges et communication scientifique pour futurs ingénieurs.",
+                fullDesc: "Destiné aux étudiants des filières scientifiques, technologiques et des écoles polytechniques, ce programme développe l'aisance dans l'exploitation de documentations techniques et la présentation de projets d'ingénierie.",
+                modules: [
+                    "Terminologie des sciences de l'ingénieur, informatique et industrie",
+                    "Lecture de normes techniques, brevets et manuels spécialisés",
+                    "Rédaction de rapports techniques et cahiers des charges",
+                    "Présentation de projets scientifiques et travail collaboratif international"
+                ],
+                targetAudience: "Étudiants en Sciences et Technologies (ST), Informatique, Génie Civil, Électronique et Écoles d'Ingénieurs."
+            }
+        ];
+
+        // Rendu des cartes de filières
+        function renderTracks() {
+            const grid = document.getElementById('tracks-grid');
+            grid.innerHTML = tracksData.map(track => `
+                <div onclick="openTrackModal('${track.id}')" class="glass-ips-card rounded-3xl p-7 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between gap-3 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-ips-yellow text-ips-charcoal flex items-center justify-center text-2xl shadow-md group-hover:scale-105 transition-transform">
+                                <i class="fa-solid ${track.icon}"></i>
+                            </div>
+                            <span class="bg-white/10 text-ips-yellow font-display font-bold text-xs px-3 py-1.5 rounded-xl border border-ips-yellow/30">
+                                ${track.badge}
+                            </span>
+                        </div>
+
+                        <h3 class="font-display font-extrabold text-2xl text-white group-hover:text-ips-yellow transition-colors mb-1">
+                            ${track.title}
+                        </h3>
+                        <p class="text-xs font-semibold text-ips-yellow/90 mb-4">${track.subtitle}</p>
+
+                        <p class="text-sm text-gray-300 leading-relaxed mb-6">
+                            ${track.shortDesc}
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-display font-bold uppercase tracking-wider text-ips-yellow">
+                        <span>Consulter le Syllabus</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Ouverture modale filière
+        function openTrackModal(trackId) {
+            const track = tracksData.find(t => t.id === trackId);
+            if (!track) return;
+
+            const body = document.getElementById('track-modal-body');
+            body.innerHTML = `
+                <div class="flex items-center gap-4 mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-ips-yellow text-ips-charcoal flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid ${track.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-ips-yellow">${track.badge} • 2026/2027</span>
+                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white">${track.title}</h3>
+                        <p class="text-xs sm:text-sm text-gray-300">${track.subtitle}</p>
+                    </div>
+                </div>
+
+                <div class="space-y-5">
+                    <div>
+                        <h4 class="font-display font-bold text-sm uppercase tracking-wider text-ips-yellow mb-1.5">Objectifs Académiques</h4>
+                        <p class="text-sm text-gray-200 leading-relaxed">${track.fullDesc}</p>
+                    </div>
+
+                    <div class="bg-ips-charcoal rounded-2xl p-5 border border-white/10">
+                        <h4 class="font-display font-bold text-sm uppercase tracking-wider text-ips-yellow mb-3">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Modules & Contenu Pédagogique
+                        </h4>
+                        <ul class="space-y-2.5">
+                            ${track.modules.map(m => `
+                                <li class="text-sm text-gray-200 flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-ips-yellow mt-1 text-xs"></i>
+                                    <span>${m}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/5 rounded-xl p-3.5 text-xs text-gray-300">
+                        <strong class="text-white">Public concerné :</strong> ${track.targetAudience}
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap items-center justify-end gap-3">
+                        <button onclick="selectTrackForRegistration('${track.title}')" class="bg-ips-yellow hover:bg-ips-yellowHover text-ips-charcoal font-display font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg">
+                            <i class="fa-solid fa-file-signature"></i>
+                            <span>S'inscrire en ${track.title}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('track-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeTrackModal() {
+            const modal = document.getElementById('track-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('track-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeTrackModal();
+        });
+
+        // Pré-sélectionner la filière et défiler vers le formulaire
+        function selectTrackForRegistration(trackTitle) {
+            closeTrackModal();
+            const select = document.getElementById('student-track');
+            select.value = trackTitle;
+            document.getElementById('admissions').scrollIntoView({ behavior: 'smooth' });
+            showToast('Filière sélectionnée', `${trackTitle} a été pré-remplie dans le formulaire.`);
+        }
+
+        // 2. GESTION DU FORMULAIRE ADMINISTRATIF & RÉCÉPISSÉ
+        let currentReceiptRef = '';
+
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            const lastName = document.getElementById('student-lastname').value.trim().toUpperCase();
+            const firstName = document.getElementById('student-firstname').value.trim();
+            const phone = document.getElementById('student-phone').value.trim();
+            const track = document.getElementById('student-track').value;
+            const level = document.getElementById('student-level').value;
+
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            currentReceiptRef = `IPS-2627-${randomNum}`;
+
+            document.getElementById('receipt-ref').textContent = currentReceiptRef;
+            document.getElementById('receipt-details').innerHTML = `
+                <div><span class="text-gray-500 block">Candidat :</span><strong class="text-ips-charcoal">${lastName} ${firstName}</strong></div>
+                <div><span class="text-gray-500 block">Téléphone :</span><strong class="text-ips-charcoal">${phone}</strong></div>
+                <div><span class="text-gray-500 block">Filière choisie :</span><strong class="text-ips-charcoal">${track}</strong></div>
+                <div><span class="text-gray-500 block">Niveau actuel :</span><strong class="text-ips-charcoal">${level}</strong></div>
+            `;
+
+            document.getElementById('preregistration-form').classList.add('hidden');
+            document.getElementById('registration-receipt').classList.remove('hidden');
+
+            showToast('Dossier enregistré !', `Référence générée : ${currentReceiptRef}`);
+        }
+
+        function resetRegistrationForm() {
+            document.getElementById('preregistration-form').reset();
+            document.getElementById('registration-receipt').classList.add('hidden');
+            document.getElementById('preregistration-form').classList.remove('hidden');
+        }
+
+        function copyReceiptRef() {
+            copyText(currentReceiptRef, 'Référence copiée');
+        }
+
+        // 3. COPIE PRESSE-PAPIER & NOTIFICATION TOAST
+        function copyText(text, title) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast(title, `${text} copié dans le presse-papier.`);
+        }
+
+        let toastTimeout;
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-desc').textContent = desc;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // 4. MENU MOBILE
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Initialisation
+        window.onload = function() {
+            renderTracks();
+        };
+    </script>
+</body>
+</html>
